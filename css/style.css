@@ -62,7 +62,7 @@ body {
 	padding: 20px;
 	border-radius: 5px;
 	background-color: rgba(49, 108, 76, 0.45);
-}
+
 
 /*==== Fonts =====*/
 @font-face {
@@ -79,12 +79,12 @@ h1 span.laugh {
 	font-size: 80px;
 }
 
-
 .description {
 	font-family: Lato, Courier;
 	font-size: 20px;
 }
 
+<<<<<<< HEAD
 span.laugh {
 	font-family: Joker, sans-serif, Courier;
 	font-size: 35px;
@@ -100,6 +100,7 @@ span.laugh {
 .centerText {
 	text-align: center;
 }
+
 
 
 form {
@@ -119,6 +120,7 @@ input.btn {
 	right: 0;
 	bottom: 0;
 }
+
 
 
 
