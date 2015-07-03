@@ -62,7 +62,7 @@ body {
 	padding: 20px;
 	border-radius: 5px;
 	background-color: rgba(49, 108, 76, 0.45);
-
+}
 
 /*==== Fonts =====*/
 @font-face {
@@ -84,7 +84,7 @@ h1 span.laugh {
 	font-size: 20px;
 }
 
-<<<<<<< HEAD
+
 span.laugh {
 	font-family: Joker, sans-serif, Courier;
 	font-size: 35px;
@@ -108,9 +108,10 @@ form {
 }
 
 input.btn {
-	background-color: rgba(49, 108, 76, 1);
+	background-color: rgba(0, 177, 106, 1);
 	border: 1px solid rgba(49, 108, 76, 0.45);
 	width: 200px;
+	padding: 10px;
 	height: 90px;
 	border-radius: 10px;
 	margin: auto;
@@ -119,9 +120,13 @@ input.btn {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	transition: all 100ms;
 }
 
-
+input.btn:hover {
+	background-color: rgba(38, 166, 91, 1);
+	border-radius: none;
+}
 
 
 
