@@ -6,7 +6,9 @@
 body {
 	background-image: url('../img/smilebats.jpg');
 	background-size: cover;
-	background-position: 50% 10%;
+	background-attachment: fixed;
+	/*background-repeat: no-repeat;*/
+	background-position: 50% 30%;
 	color: lightgrey;
 }
 
@@ -58,9 +60,10 @@ body {
 	width: 12.5%;
 }
 
-.module {
+.module	{
 	padding: 20px;
-	background-color: rgba(49, 108, 76, 0.4);
+	border-radius: 5px;
+	/*background-color: rgba(49, 108, 76, 0.45);*/
 }
 
 /*==== Fonts =====*/
@@ -69,45 +72,147 @@ body {
     src: url(joker.ttf);
 }
 
-h1 {
+.intro {
 	font-family: 'Gloria Hallelujah', cursive;
+	font-size: 40px;
 }
 
-h1 span {
-	font-family: Joker, sans-serif, Courier;
-	font-size: 70px;
-	color: rgba(236, 25, 44, 0.7);
+.intro span.laugh {
+	font-size: 80px;
 }
+
 
 .description {
 	font-family: Lato, Courier;
-	font-size: 20px;
+	font-size: 25px;
+	border-radius: 5px;
+	min-height: 500px;
+	background-color: rgba(49, 108, 76, 0.6)
 }
 
-.laugh {
-	font-family: Joker;
-	font-size: 30px;
+
+/*==For when we insert the questions==*/
+.description .question {
+	font-family: Gloria Hallelujah, cursive;
+	font-size: 40px;
+}
+
+
+#answerForm {
+	margin-top: -30px;
+	margin-left: 50px;
+}
+
+
+input[type="radio"] {
+	position: absolute;
+	left: -9999px;
+}
+
+
+label {
+  display: inline-block;
+  position: relative;
+  min-width: 300px;
+  margin: 20px;
+  padding: 20px 30px 15px 62px;
+  border: 3px solid #fff;
+  border-radius: 100px;
+  color: #fff;
+  background-color: rgba(60, 175, 104, 0.7);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;
+  transition: background-color .2s, box-shadow .2s;
+}
+
+
+
+label::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  width: 32px;
+  border: 3px solid #fff;
+  border-radius: 100px;
+  transition: background-color .2s;
+}
+
+
+
+input:checked + .side-label {
+	background-color: rgba(236, 25, 44, 0.5);
+}
+
+input:checked + .side-label::before {
+	background-color: white;
+}
+
+
+
+
+
+
+
+
+span.laugh {
+	font-family: Joker, sans-serif, Courier;
+	font-size: 50px;
 	color: rgba(236, 25, 44, 0.7);
 }
 
 
-
 .logo {
-	height: 400px;
+	min-height: 100px;
 }
 
-
+/*==DRY CSS==*/
 .centerText {
 	text-align: center;
 }
 
 
+.button-place {
+	min-height: 80px;
+}
+
+form#next {
+	position: relative;
+	height: 80px;
+}
 
 
+input#btn {
+	background-color: rgba(38, 166, 91, 1);
+	border: 1px solid rgba(49, 108, 76, 0.45);
+	cursor: pointer;
+	width: 200px;
+	padding: 10px;
+	font-size: 60px;
+	font-family: Joker;
+	color: rgba(176, 35, 39, 0.7);
+	border-radius: 10px;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	transition: all 100ms;
+}
 
-
-
-
+input#btn:hover {
+	background-color: rgba(0, 177, 106, 1);
+	border: 3px solid rgba(236, 25, 44, 0.7);
+	box-shadow: 0px 0px 10px 15px rgba(236, 25, 44, 0.4);
+}
 
 
 
