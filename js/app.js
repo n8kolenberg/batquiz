@@ -17,15 +17,9 @@ $('#answerForm, .question').hide();
 // }
 
 
-/* ====== Function to add questions to the page ====== */
-function addQuestions () {
-	$('.question').html(quiz.questions[counter].question);
-	$('#a').val(quiz.questions[counter].correct).next().html($('#a').val());
-	$('#b').val(quiz.questions[counter].wrong1).next().html($('#b').val());
-	$('#c').val(quiz.questions[counter].wrong2).next().html($('#c').val());
-	$('#d').val(quiz.questions[counter].wrong3).next().html($('#d').val());
-}
 
+
+//checkout forEach method
 
 
 /* ====== Function to check whether user picked right answer ======*/
@@ -101,25 +95,43 @@ var quiz = {
 	});//End submit function
 		
 
+
+/* ====== Function to add questions to the page ====== */
+function addQuestions () {
+	if(counter < quiz.questions.length) {
+		$('.question').html(quiz.questions[counter].question);
+		$('#a').val(quiz.questions[counter].correct).next().html($('#a').val());
+		$('#b').val(quiz.questions[counter].wrong1).next().html($('#b').val());
+		$('#c').val(quiz.questions[counter].wrong2).next().html($('#c').val());
+		$('#d').val(quiz.questions[counter].wrong3).next().html($('#d').val());
+	}
+}		
+
+//Create array of 
+
+
 /* ====== When user clicks on one of the answers ======*/
 	$('#answerForm').on('click', 'input[type="radio"]', function(){
+		
 		if(counter < quiz.questions.length) {
+			// debugger;
+			if( $(this).val() === quiz.questions[counter].correct ) {
+				correctAnswers++;
+				console.log(correctAnswers);
+			 //Here, we can add an else block to add magic of transitioning radio buttons
+			} //End nested if statement
+			
 			counter++;
-		} else counter = quiz.questions.length - 1;
-		
-		addQuestions();
-		$(this).removeAttr('checked');
-		
-		if( $(this).val() === quiz.questions[counter].correct ) {
-			correctAnswers++;
-			console.log(correctAnswers);
-		}
-	}); //End on click
-
-
-
-
-
+			addQuestions();
+			// setTimeout(function() { $(this).removeAttr('checked')}, 1000);
+			
+			if(counter == quiz.questions.length) {
+				$('#answerForm, .question').fadeOut();
+				$('.instructions').html("You've finished the game and you've got " + correctAnswers + " answers right").fadeIn();
+				} //End nested if 2
+				
+			} //End big if statement 
+		}); //End on click
 
 
 
