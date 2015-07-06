@@ -11,30 +11,33 @@ $('#answerForm, .question').hide();
 // } //End validateMoveOn function
 
 
-// /* ====== Function to clear all checked radios ======*/
-// function clearAll () {
-// 	$(':checked').removeAttr('checked');
-// }
+/* ====== Function to add questions to the page ====== */
+function addQuestions () {
+	if(counter < quiz.questions.length) {
+		randomizeRadios();
+		$('.question').html(quiz.questions[counter].question);
+		$(radioArray[0]).val(quiz.questions[counter].correct).next().html($(radioArray[0]).val());
+		$(radioArray[1]).val(quiz.questions[counter].wrong1).next().html($(radioArray[1]).val());
+		$(radioArray[2]).val(quiz.questions[counter].wrong2).next().html($(radioArray[2]).val());
+		$(radioArray[3]).val(quiz.questions[counter].wrong3).next().html($(radioArray[3]).val());
+	}
+}		
 
+//Create array of the radio inputs so we can Math.random() their index positions
+var radioArray = [$('#a'), $('#b'), $('#c'), $('#d')];
 
-
-
-//checkout forEach method
-
-
-/* ====== Function to check whether user picked right answer ======*/
-// function checkRightAnswer () {
-// 	if( $('input[type="radio"]:checked').val() == quiz.questions[counter].correct ) {
-// 		correctAnswers++;
-// 		console.log(correctAnswers);
-// 	}
-// } //End pickedRightAnswer function
-
-
+//Function to randomize the location of the radiobutton values
+function randomizeRadios () {
+	radioArray.sort( function() {
+	return 0.5 - Math.random();
+	}); //End sort function
+}//End randomizeRadios
 
 var counter = 0;
 var correctAnswers = 0;
 
+
+//checkout forEach method
 var quiz = {
 	questions : [
 
@@ -91,30 +94,18 @@ var quiz = {
 		} //End if statement
 
 		$(this).fadeOut(1000);
-		$('h1.intro').html('Remember to put a <span class="laugh">SMILE</span> on your face!');
+		$('h1.intro').fadeOut(100, function() {
+			$(this).html('Remember to put a <span class="laugh">SMILE</span> on your face!')
+				   .fadeIn(400);	 
+		});	//End Change of h1 intro text			 			 
 	});//End submit function
 		
-
-
-/* ====== Function to add questions to the page ====== */
-function addQuestions () {
-	if(counter < quiz.questions.length) {
-		$('.question').html(quiz.questions[counter].question);
-		$('#a').val(quiz.questions[counter].correct).next().html($('#a').val());
-		$('#b').val(quiz.questions[counter].wrong1).next().html($('#b').val());
-		$('#c').val(quiz.questions[counter].wrong2).next().html($('#c').val());
-		$('#d').val(quiz.questions[counter].wrong3).next().html($('#d').val());
-	}
-}		
-
-//Create array of 
 
 
 /* ====== When user clicks on one of the answers ======*/
 	$('#answerForm').on('click', 'input[type="radio"]', function(){
 		
 		if(counter < quiz.questions.length) {
-			// debugger;
 			if( $(this).val() === quiz.questions[counter].correct ) {
 				correctAnswers++;
 				console.log(correctAnswers);
@@ -128,7 +119,7 @@ function addQuestions () {
 			if(counter == quiz.questions.length) {
 				$('#answerForm, .question').fadeOut();
 				$('.instructions').html("You've finished the game and you've got " + correctAnswers + " answers right").fadeIn();
-				} //End nested if 2
+				} //End second nested if statement
 				
 			} //End big if statement 
 		}); //End on click
