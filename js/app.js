@@ -20,6 +20,7 @@ function addQuestions () {
 		$(radioArray[1]).val(quiz.questions[counter].wrong1).next().html($(radioArray[1]).val());
 		$(radioArray[2]).val(quiz.questions[counter].wrong2).next().html($(radioArray[2]).val());
 		$(radioArray[3]).val(quiz.questions[counter].wrong3).next().html($(radioArray[3]).val());
+
 	}
 }		
 
@@ -32,6 +33,7 @@ function randomizeRadios () {
 	return 0.5 - Math.random();
 	}); //End sort function
 }//End randomizeRadios
+
 
 var counter = 0;
 var correctAnswers = 0;
@@ -88,15 +90,15 @@ var quiz = {
 		//Fade out the initial instructions (if not hidden already) 
 		//and then fade in the question form
 		if($('.instructions').is(':visible')) {
-			$('.instructions').fadeOut(1000, function(){
+			$('.instructions').fadeOut(300, function(){
 				$('#answerForm, .question').fadeIn(300);
 			}); //End fadeOut
 		} //End if statement
 
-		$(this).fadeOut(1000);
+		$(this).fadeOut(300);
 		$('h1.intro').fadeOut(100, function() {
 			$(this).html('Remember to put a <span class="laugh">SMILE</span> on your face!')
-				   .fadeIn(400);	 
+				   .fadeIn(300);	 
 		});	//End Change of h1 intro text			 			 
 	});//End submit function
 		
@@ -104,17 +106,23 @@ var quiz = {
 
 /* ====== When user clicks on one of the answers ======*/
 	$('#answerForm').on('click', 'input[type="radio"]', function(){
-		
+		// setTimeout(function(){ $(this).removeAttr('checked')}, 1000);
 		if(counter < quiz.questions.length) {
 			if( $(this).val() === quiz.questions[counter].correct ) {
 				correctAnswers++;
 				console.log(correctAnswers);
 			 //Here, we can add an else block to add magic of transitioning radio buttons
+
 			} //End nested if statement
 			
 			counter++;
-			addQuestions();
-			// setTimeout(function() { $(this).removeAttr('checked')}, 1000);
+
+			setTimeout(function(){ 
+				addQuestions();
+			}, 300);
+
+			setTimeout(function() { $('input[type="radio"').removeAttr('checked')}, 200);
+			// debugger;
 			
 			if(counter == quiz.questions.length) {
 				$('#answerForm, .question').fadeOut();
