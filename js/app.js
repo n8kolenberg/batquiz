@@ -22,10 +22,12 @@ function addQuestions () {
 		$(radioArray[3]).val(quiz.questions[counter].wrong3).next().html($(radioArray[3]).val());
 
 	}
-}		
+}// End addQuestions		
+
 
 //Create array of the radio inputs so we can Math.random() their index positions
 var radioArray = [$('#a'), $('#b'), $('#c'), $('#d')];
+
 
 //Function to randomize the location of the radiobutton values
 function randomizeRadios () {
@@ -33,6 +35,7 @@ function randomizeRadios () {
 	return 0.5 - Math.random();
 	}); //End sort function
 }//End randomizeRadios
+
 
 
 var counter = 0;
@@ -111,18 +114,27 @@ var quiz = {
 			if( $(this).val() === quiz.questions[counter].correct ) {
 				correctAnswers++;
 				console.log(correctAnswers);
-			 //Here, we can add an else block to add magic of transitioning radio buttons
 
-			} //End nested if statement
+			// } else {
+			// 	$('')
+			}//End nested if statement
 			
 			counter++;
 
-			setTimeout(function(){ 
-				addQuestions();
+			//We show user for a split second what the correct answer is
+			$(radioArray[0]).next().addClass('correct')
+			
+			setTimeout(function(){
+				$(radioArray[0]).next().removeClass('correct');
 			}, 300);
 
+			//Bring in the new questions
+			setTimeout(function(){ 
+				addQuestions();
+			}, 500);
+
+			//We remove the clicked answer styling after 200 ms
 			setTimeout(function() { $('input[type="radio"').removeAttr('checked')}, 200);
-			// debugger;
 			
 			if(counter == quiz.questions.length) {
 				$('#answerForm, .question').fadeOut();
