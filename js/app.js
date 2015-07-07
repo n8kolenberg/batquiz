@@ -1,14 +1,7 @@
 $(function() {
 
-$('.description').hide().fadeIn(2500);
+$('.description').hide().fadeIn(400);
 $('#answerForm, .question').hide();
-
-/* ====== Function to validate whether an answer is checked ====== */
-// function validateMoveOn () {
-// 	if ($('input[type="radio"]').is(':checked')) {
-// 		return true;
-// 	} else return false;
-// } //End validateMoveOn function
 
 
 /* ====== Function to add questions to the page ====== */
@@ -137,8 +130,17 @@ var quiz = {
 			setTimeout(function() { $('input[type="radio"').removeAttr('checked')}, 200);
 			
 			if(counter == quiz.questions.length) {
-				$('#answerForm, .question').fadeOut();
-				$('.instructions').html("You've finished the game and you've got " + correctAnswers + " answers right").fadeIn();
+				
+				if(correctAnswers >= 4) {
+					$('#answerForm, .question').fadeOut(400, function() {
+						$('.middle').html("<p><span class='laugh'> HA HA HA HA</span> Well done Bats! " + correctAnswers + " answers correct! Didn't think you had it in you!</p>").fadeIn(400);
+					}); //End fadeOut last question
+				} else
+
+				$('#answerForm, .question').fadeOut(400, function() {
+					$('.middle').html("<p>Aaaaww  Batsy... I thought I was dealing with a worthy opponent.. " + correctAnswers + " correct? That's just disappointing.. Oh Well... Bombs Away! <span class='laugh'>HA HA HA HA HA HA!</span></p>").fadeIn(400);
+					});
+				
 				} //End second nested if statement
 				
 			} //End big if statement 
