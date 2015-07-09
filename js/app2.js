@@ -68,6 +68,8 @@ var correctAnswers = 0;
    to the radios and labels =======*/
 function addQuiz () {
 	if (counter < quizArray.length) {
+		console.log(counter);
+		randomizeRadios();
 		$('.question').html(quizArray[counter].question);
 		$(radioArray[0]).val(quizArray[counter].correct);
 		$(radioArray[1]).val(quizArray[counter].b);
@@ -114,31 +116,28 @@ $('form#next').submit(function(){
 
 
 /*Allow user to choose answer and then move on to next question=======*/
-$('form#answerForm').on('click', 'input[type="radio"]', function(){
+$('#answerForm').on('click', 'input[type="radio"]', function(){
 	if (counter < quizArray.length) {
 		if($(this).val() === quizArray[counter].correct) {
 			correctAnswers++;
 			console.log(correctAnswers);
 		}//End nested if
 
-		} else {
-			showResults();
-	}//End if
-		
 		/*Show user correct answer in split second=======*/
 		$(radioArray[0]).next().addClass('correct');
 		
 		
+		counter++;
 		setTimeout( function(){
 			$(radioArray[0]).next().removeClass('correct');
 			$('input[type="radio"]').removeAttr('checked');
-			counter++;
 			addQuiz();
 		}, 300)
 
-	
 
-
+	} else {
+		showResults();
+	}//End if statement
 }); //End on click
 
 
@@ -146,9 +145,8 @@ $('form#answerForm').on('click', 'input[type="radio"]', function(){
 
 
 /*Show user correct amount of answers and try again button=======*/
-function showResults() {
-	if(counter == quizArray.length) {	
-		if(correctAnswers >= 5) {
+function showResults() {	
+		if(correctAnswers >= 4) {
 			$('#answerForm, .question').fadeOut(400, function() {
 							$('.question').html("<p><span class='laugh'> HA HA HA HA</span> Well done Bats! " + correctAnswers + " answers correct! Didn't think you had it in you!</p>").fadeIn(400);
 							$(".videoHolder").html(
@@ -169,13 +167,8 @@ function showResults() {
 
 							$('#next').fadeIn().find('input').val('Try again');
 					});//End fadeOut
-
 		}//End nested if
-	}//End if
 } //End showResults()
-
-
-
 
 
 
