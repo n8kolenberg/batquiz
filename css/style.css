@@ -160,7 +160,7 @@ input:checked + .side-label::before {
 
 /* Styles to show user correct answer */
 label.correct {
-	background-color: rgba(248, 148, 6, 0.5);
+	background-color: rgba(85, 60, 88, 0.5);
 }
 
 input.correct + .side-label::before {
@@ -224,10 +224,35 @@ input#btn {
 
 input#btn:hover {
 	background-color: rgba(0, 177, 106, 1);
-	border: 3px solid rgba(236, 25, 44, 0.7);
+	border: 3px solid rgba(236, 25, 44, 0.5);
 	box-shadow: 0px 0px 10px 15px rgba(236, 25, 44, 0.4);
 }
 
 
 
+/*Video insertion
+==================*/
+.videoHolder {
+	margin: auto;
+	text-align: center;
+	border-radius: 10px;
+}
+
+
+/*Background video
+
+video#bgvid {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	background: url('../images/sky.png') no-repeat;
+	background-size: cover;
+}
 

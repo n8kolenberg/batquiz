@@ -17,10 +17,8 @@ function addQuestions () {
 	}
 }// End addQuestions		
 
-
 //Create array of the radio inputs so we can Math.random() their index positions
 var radioArray = [$('#a'), $('#b'), $('#c'), $('#d')];
-
 
 //Function to randomize the location of the radiobutton values
 function randomizeRadios () {
@@ -75,79 +73,83 @@ var quiz = {
 }; //End quiz object
 
 
-
-/* ====== Adding the first question to the page initially ======*/
-	addQuestions();
-
-
 /* ====== When user clicks on button to move to the next question ======*/
 	$('#next').submit(function(event){
 		event.preventDefault();
 		//Fade out the initial instructions (if not hidden already) 
 		//and then fade in the question form
-		if($('.instructions').is(':visible')) {
-			$('.instructions').fadeOut(300, function(){
+		if($('.middle').find('p').is(':visible')) {
+			$('.middle').find('p').fadeOut(200, function(){
 				$('#answerForm, .question').fadeIn(300);
+				counter = 0;
+				correctAnswers = 0;
+				$('.videoHolder').html('');
+				addQuestions();
 			}); //End fadeOut
 		} //End if statement
 
 		$(this).fadeOut(300);
-		$('h1.intro').fadeOut(100, function() {
-			$(this).html('Remember to put a <span class="laugh">SMILE</span> on your face!')
-				   .fadeIn(300);	 
-		});	//End Change of h1 intro text			 			 
+			$('h1.intro').fadeOut(100, function() {
+				$(this).html('Remember to put a <span class="laugh">SMILE</span> on your face!')
+					   .fadeIn(200);	 
+			});	//End Change of h1 intro text			 
 	});//End submit function
 		
 
 
 /* ====== When user clicks on one of the answers ======*/
 	$('#answerForm').on('click', 'input[type="radio"]', function(){
-		// setTimeout(function(){ $(this).removeAttr('checked')}, 1000);
 		if(counter < quiz.questions.length) {
 			if( $(this).val() === quiz.questions[counter].correct ) {
 				correctAnswers++;
 				console.log(correctAnswers);
-
+			}
 			// } else {
 			// 	$('')
-			}//End nested if statement
+		}//End nested if statement
 			
-			counter++;
+		counter++;
 
-			//We show user for a split second what the correct answer is
-			$(radioArray[0]).next().addClass('correct')
+		//We show user for a split second what the correct answer is
+		$(radioArray[0]).next().addClass('correct')
 			
-			setTimeout(function(){
-				$(radioArray[0]).next().removeClass('correct');
-			}, 300);
+		setTimeout(function(){
+			$(radioArray[0]).next().removeClass('correct');
+		}, 300);
 
-			//Bring in the new questions
-			setTimeout(function(){ 
-				addQuestions();
-			}, 500);
+		//Bring in the new questions
+		setTimeout(function(){ 
+			addQuestions();
+		}, 500);
 
-			//We remove the clicked answer styling after 200 ms
-			setTimeout(function() { $('input[type="radio"').removeAttr('checked')}, 200);
-			
-			if(counter == quiz.questions.length) {
-				
+		//We remove the clicked answer styling after 200 ms
+		setTimeout(function() { $('input[type="radio"').removeAttr('checked')}, 200);
+
+		if(counter == quiz.questions.length) {
 				if(correctAnswers >= 4) {
 					$('#answerForm, .question').fadeOut(400, function() {
-						$('.middle').html("<p><span class='laugh'> HA HA HA HA</span> Well done Bats! " + correctAnswers + " answers correct! Didn't think you had it in you!</p>").fadeIn(400);
+						$('.question').html("<p><span class='laugh'> HA HA HA HA</span> Well done Bats! " + correctAnswers + " answers correct! Didn't think you had it in you!</p>").fadeIn(400);
+						$(".videoHolder").html(
+							    '<video autoplay>' +
+							        '<source src="img/batmanrevised.mp4" type="video/mp4"></source>' +
+							    '</video>');
+						$('#next').fadeIn().find('input').val('Try again');
 					}); //End fadeOut last question
-				} else
+				} else {
 
-				$('#answerForm, .question').fadeOut(400, function() {
-					$('.middle').html("<p>Aaaaww  Batsy... I thought I was dealing with a worthy opponent.. " + correctAnswers + " correct? That's just disappointing.. Oh Well... Bombs Away! <span class='laugh'>HA HA HA HA HA HA!</span></p>").fadeIn(400);
+					$('#answerForm, .question').fadeOut(400, function() {
+						$('.question').html("<p>Aaaaww  Batsy... I thought I was dealing with a worthy opponent.. " + correctAnswers + " correct? That's just disappointing.. Oh Well... Bombs Away! <span class='laugh'>HA HA HA HA HA HA!</span></p>").fadeIn(400);
+							$(".videoHolder").html(
+							    '<video autoplay>' +
+							        '<source src="img/jokerlaugh.mp4" type="video/mp4"></source>' +
+							    '</video>');
+
+						$('#next').fadeIn().find('input').val('Try again');
 					});
-				
 				} //End second nested if statement
-				
-			} //End big if statement 
-		}); //End on click
-
-
-
+			} //End  big if statement
+	}); //End on click
 
 }); //End Ready
+
 
