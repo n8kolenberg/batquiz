@@ -75,55 +75,63 @@ body {
 .intro {
 	font-family: 'Gloria Hallelujah', cursive;
 	font-size: 40px;
+	min-width: 250px;
+	margin: auto;
+	padding-bottom: 40px;
+	padding-top: 40px;
 }
 
 .intro span.laugh {
-	font-size: 80px;
+	font-size: 70px;
 }
 
 
 .description {
 	font-family: Lato, Courier;
-	font-size: 25px;
+	font-size: 24px;
 	border-radius: 5px;
-	min-height: 500px;
+	min-height: 220px;
 	margin-top: -50px;
-	background-color: rgba(49, 108, 76, 0.6);
+	background-color: rgba(49, 108, 76, 0.5);
 }
 
 
 /*==For when we insert the questions==*/
 .description .question {
 	font-family: Gloria Hallelujah, cursive;
-	font-size: 40px;
+	font-size: 30px;
 }
 
 
 #answerForm {
-	margin-top: -30px;
-	margin-left: 50px;
-	width: 50%;
+	margin: auto;
+	/*width: 100%;*/
 }
 
 
 input[type="radio"] {
 	position: absolute;
+	margin: auto;
 	left: -9999px;
 }
 
 
 label {
-  display: inline-block;
+  display: block;
   position: relative;
-  min-width: 300px;
-  margin: 20px;
-  padding: 20px 30px 15px 62px;
+  min-width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 25px;
+  padding: 20px 30px;
   border: 3px solid #fff;
-  border-radius: 100px;
+  border-radius: 50px;
   color: #fff;
   background-color: rgba(60, 175, 104, 0.7);
   box-shadow: 0 0 20px rgba(0, 0, 0, .2);
-  white-space: nowrap;
+  white-space: no-wrap;
   cursor: pointer;
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
@@ -134,18 +142,19 @@ label {
 
 
 
-label::before {
+/*label::before {
   content: '';
-  display: block;
+  display: inline-block;
   position: absolute;
   top: 10px;
   bottom: 10px;
   left: 10px;
   width: 32px;
+  height: 32px;
   border: 3px solid #fff;
   border-radius: 100px;
   transition: background-color .2s;
-}
+}*/
 
 
 
@@ -153,19 +162,18 @@ input:checked + .side-label {
 	background-color: rgba(236, 25, 44, 0.5);
 }
 
-input:checked + .side-label::before {
-	background-color: white;
+input:hover + .side-label {
+	background-color: rgba(236, 25, 44, 0.5);
 }
 
 
-/* Styles to show user correct answer */
+/* Styles to show user correct answer
+==================================== */
 label.correct {
 	background-color: rgba(85, 60, 88, 0.5);
 }
 
-input.correct + .side-label::before {
-	background-color: white;
-}
+
 /* ==================================== */
 
 
@@ -180,7 +188,8 @@ span.laugh {
 	min-height: 40px;
 }
 
-/*==DRY CSS==*/
+/* DRY CSS
+==================================== */
 .centerText {
 	text-align: center;
 }
@@ -189,7 +198,7 @@ span.laugh {
 	display: none;
 }
 
-
+/* ==================================== */
 
 
 .button-place {
@@ -203,14 +212,14 @@ form#next {
 
 
 input#btn {
-	background-color: rgba(38, 166, 91, 1);
+	background-color: rgba(38, 166, 91, 0.7);
 	border: 1px solid rgba(49, 108, 76, 0.45);
 	cursor: pointer;
 	width: 200px;
 	padding: 10px;
 	font-size: 60px;
-	font-family: Joker;
-	color: rgba(176, 35, 39, 0.7);
+	font-family: Joker, cursive;
+	color: rgba(176, 35, 39, 0.8);
 	border-radius: 10px;
 	margin: auto;
 	position: absolute;
@@ -222,9 +231,9 @@ input#btn {
 }
 
 input#btn:hover {
-	background-color: rgba(0, 177, 106, 1);
-	border: 3px solid rgba(236, 25, 44, 0.5);
-	box-shadow: 0px 0px 10px 15px rgba(236, 25, 44, 0.4);
+	background-color: rgba(0, 177, 106, 0.9);
+	/*border: 3px solid rgba(236, 25, 44, 0.5);*/
+	box-shadow: 0px 0px 5px 10px rgba(181, 52, 38, 0.5);
 }
 
 
@@ -234,24 +243,87 @@ input#btn:hover {
 .videoHolder {
 	margin: auto;
 	text-align: center;
+}
+
+
+video {
 	border-radius: 10px;
+	margin: auto;
+	height: 200px;
+	width: 250px;
 }
 
 
-/*Background video
 
-video#bgvid {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	min-width: 100%;
-	min-height: 100%;
-	width: auto;
-	height: auto;
-	z-index: -100;
-	-webkit-transform: translateX(-50%) translateY(-50%);
-	transform: translateX(-50%) translateY(-50%);
-	background: url('../images/sky.png') no-repeat;
-	background-size: cover;
+@media screen and (min-width: 550px) {
+	
+		.intro {
+			font-size: 45px;
+		}
+
+		.intro span.laugh {
+			font-size: 80px;
+		}
+	
+		.intro > span {
+			display: block;
+		}
+
+
+		.description {
+			font-size: 30px;
+		}	
+
+
+		span.laugh {
+			font-size: 70px;
+		}
+
+		
+		.description .question {
+			font-size: 40px;
+		}	
+
+		label {
+			width: 85%;
+			font-size: 30px;
+		}
+
+		/*Video insertion
+		==================*/
+		video {
+			border-radius: 10px;
+			margin: auto;
+			height: 300px;
+			width: 400px;
+	}
 }
 
+
+@media screen and (min-width: 800px) {
+	
+
+		.question span {
+			font-size: 80px;
+			display: block;
+		}
+
+		.question > span.laugh {
+			font-size: 80px;
+		}	
+
+		label {
+			width: 70%;
+		}
+
+		/*Video insertion
+		==================*/
+		video {
+		border-radius: 10px;
+		margin: auto;
+		height: 480px;
+		width: 650px;
+	}
+
+
+}
