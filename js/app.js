@@ -13,14 +13,14 @@ var QuizQuestion = function (question, correct, b, c, d) {
 	this.d = d;
 }
 
-var quiz0 = new QuizQuestion("Whose nipples caused controversy when they tried to play you in a movie?",
-	"George Clooney",
-	"Val Kilmer", 
-	"Michael Keaton", 
-	"Christian Bale");
+var quiz0 = new QuizQuestion("Which of your enemies was trained by the same person as yourself, Bats?",
+	"Bane",
+	"Deadshot", 
+	"Clayface", 
+	"Killer Croc");
 
-var quiz1 = new QuizQuestion("What's the color of CatWoman's eyes?",
-	"Green", "Blue", "Brown", "Black");
+var quiz1 = new QuizQuestion("Who put a bullet in Barbara Gordon's spine, leaving her unable to walk?",
+	"the Joker", "Two Face", "Catwoman", "Penguin");
 
 var quiz2 = new QuizQuestion("What was the killing Joke?",
 	"A comic depicting the Joker's story", 
@@ -28,32 +28,31 @@ var quiz2 = new QuizQuestion("What was the killing Joke?",
 	"A joke told by the Riddler", 
 	"A cartoon about the Joker killing Barbara Gordon");
 
-var quiz3 = new QuizQuestion("Who does Mr. Freeze need those crystals for?",
-	"To revive his wife", 
-	"For his suit to work", 
-	"To use as magnifying glasses for his freeze ray", 
-	"To sell for money");
+var quiz3 = new QuizQuestion("What does Mr. Freeze need those crystals for?",
+	"To recover his wife from a rare disease", 
+	"As fuel for his suit to work", 
+	"To use as magnifiers for his freeze ray", 
+	"To sell on the market for cold cash");
 
-var quiz4 = new QuizQuestion("Who is Batman?",
-	"I'll never say", "Clark Kent", "Bruce Wayne", "Lex Luthor");
+var quiz4 = new QuizQuestion("Who's the inadvertent monstrous antonym of yours, Batman?",
+	"Manbat", "the Joker", "Catwoman", "Clayface");
 
-// var quiz6 = new QuizQuestion("What's the color of CatWoman's eyes",
-// 	"Green", "Blue", "Brown", "Black");
+var quiz5 = new QuizQuestion("Which of your arch enemies was caught in a blaze, that he himself set to a chemical plant, and suffered burns to 90% of his body?",
+	"Firefly", "the Joker", "Two Face", "Killer Croc");
 
-// var quiz7 = new QuizQuestion("What's the color of CatWoman's eyes",
-// 	"Green", "Blue", "Brown", "Black");
+var quiz6 = new QuizQuestion("Penguin got sent to a particular city as a child. After his family hit hard times, he immersed himself in a criminal education on the streets of said city. What city was this?",
+	"London", "Kiev", "Bangkok", "Metropolis");
 
-// var quiz8 = new QuizQuestion("What's the color of CatWoman's eyes",
-// 	"Green", "Blue", "Brown", "Black");
+var quiz7 = new QuizQuestion("What does Poison Ivy have flowing through her veins instead of blood?",
+	"Chlorophyll", "Acid", "Microscopic seeds", "Tree bark");
 
+var quiz8 = new QuizQuestion("Which enemy of yours has a psychotic fixation with duality and the number 2?",
+	"Two Face", "Penguin", "Clayface", "the Joker");
 
-// var quiz9 = new QuizQuestion("What's the color of CatWoman's eyes",
-// 	"Green", "Blue", "Brown", "Black");
+var quiz9 = new QuizQuestion("Who got too much taste of his own medicine and now can't get what he wants most, except when he's confronted by you, Batman?",
+	"Scarecrow", "the Joker", "the Riddler", "Raj Al Ghul");
 
-// var quiz10 = new QuizQuestion("What's the color of CatWoman's eyes",
-// 	"Green", "Blue", "Brown", "Black");
-
-var quizArray = [quiz0, quiz1, quiz2, quiz3, quiz4];
+var quizArray = [quiz0, quiz1, quiz2, quiz3, quiz4, quiz5, quiz6, quiz7, quiz8, quiz9];
 
 //Function to randomize the location of the questions
 function randomizeQuizes () {
@@ -106,7 +105,7 @@ function randomizeRadios () {
 /*Allow user to click on button and have quiz appear=======*/
 $('form#next').submit(function(){
 	event.preventDefault();
-	// randomizeQuizes();
+	randomizeQuizes();
 	$('input[type="radio"]').removeAttr('checked');
 	
 	if($('.middle').find('p').is(':visible')) {
@@ -133,30 +132,28 @@ $('#answerForm').on('click', 'input[type="radio"]', function(){
 		counter++;
 	
 	if(counter < quizArray.length) {	
-		/*Show user correct answer in split second=======*/
-		$(radioArray[0]).next().addClass('correct');	
-		
-		console.log("counter so far: " + counter);
-		console.log("correctAnswers so far: " + correctAnswers)
-		setTimeout( function(){
-			$(radioArray[0]).next().removeClass('correct');
-			$('input[type="radio"]').removeAttr('checked');
-			addQuiz();
-		}, 300)
-
-
+		nextQuestion();
 	} else {
-		showResults();
+			nextQuestion();
+			showResults();
 	}//End if statement
 }); //End on click
 
 
 
-
+/* Function to Show user correct answer in split second=======*/
+function nextQuestion() {			
+	$(radioArray[0]).next().addClass('correct');	
+	setTimeout( function(){
+		$(radioArray[0]).next().removeClass('correct');
+		$('input[type="radio"]').removeAttr('checked');
+		addQuiz();
+	}, 300)
+}
 
 /*Show user correct amount of answers and try again button=======*/
 function showResults() {	
-		if(correctAnswers >= 4) {
+		if(correctAnswers >= 8) {
 			$('#answerForm, .question').fadeOut(400, function() {
 							$('.question').html("<p><span class='laugh'> HA HA HA HA</span> Well done Bats! " + correctAnswers + " answers correct! Didn't think you had it in you!</p>").fadeIn(400);
 							$(".videoHolder").html(

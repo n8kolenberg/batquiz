@@ -120,6 +120,7 @@ label {
   display: block;
   position: relative;
   min-width: 100px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 25px;
@@ -139,23 +140,6 @@ label {
   user-select: none;
   transition: background-color .2s, box-shadow .2s;
 }
-
-
-
-/*label::before {
-  content: '';
-  display: inline-block;
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  left: 10px;
-  width: 32px;
-  height: 32px;
-  border: 3px solid #fff;
-  border-radius: 100px;
-  transition: background-color .2s;
-}*/
-
 
 
 input:checked + .side-label {
@@ -274,19 +258,9 @@ video {
 			font-size: 30px;
 		}	
 
-
-		span.laugh {
-			font-size: 70px;
-		}
-
-		
-		.description .question {
-			font-size: 40px;
-		}	
-
 		label {
-			width: 85%;
-			font-size: 30px;
+			width: 75%;
+			font-size: 25px;
 		}
 
 		/*Video insertion
@@ -313,7 +287,7 @@ video {
 		}	
 
 		label {
-			width: 70%;
+			width: 60%;
 		}
 
 		/*Video insertion
