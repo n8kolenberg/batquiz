@@ -62,7 +62,6 @@ function randomizeQuizes () {
 }//End randomizeQuizes
 
 
-
 /* We need a counter to check which question we're at 
    and another one for the amount of questions correct=======*/
 var counter = 0;
@@ -98,10 +97,6 @@ function randomizeRadios () {
 }//End randomizeRadios
 
 
-
-
-
-
 /*Allow user to click on button and have quiz appear=======*/
 $('form#next').submit(function(){
 	event.preventDefault();
@@ -123,7 +118,6 @@ $('form#next').submit(function(){
 }); //End submit
 
 
-
 /*Allow user to choose answer and then move on to next question=======*/
 $('#answerForm').on('click', 'input[type="radio"]', function(){
 	if($(this).val() === quizArray[counter].correct) {
@@ -138,7 +132,6 @@ $('#answerForm').on('click', 'input[type="radio"]', function(){
 			showResults();
 	}//End if statement
 }); //End on click
-
 
 
 /* Function to Show user correct answer in split second=======*/
@@ -176,10 +169,5 @@ function showResults() {
 					});//End fadeOut
 		}//End nested if
 } //End showResults()
-
-
-
-debugger;
-
 
 }); //End ready
